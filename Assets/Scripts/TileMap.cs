@@ -19,9 +19,10 @@ public class TileMap : MonoBehaviour
 	int mapSizeX = 20;
 	int mapSizeY = 20;
 
+	// Start is called when the object becomes active
 	void Start()
 	{
-
+		// set up player by getting position
 		GameObject player = (GameObject)Instantiate( playerPrefab, new Vector3(0, 0, 0), Quaternion.identity );
 		player.GetComponent<Unit>().tileX = (int)player.transform.position.x;
 		player.GetComponent<Unit>().tileY = (int)player.transform.position.y;
@@ -49,6 +50,7 @@ public class TileMap : MonoBehaviour
 		{
 			for(y=0; y < mapSizeY; y++)
 			{
+				// value of 0 represents grass
 				tiles[x,y] = 0;
 				playerLocations[x,y] = 0;
 			}
@@ -59,6 +61,7 @@ public class TileMap : MonoBehaviour
 		{
 			for(y=0; y < 4; y++)
 			{
+				// value of 1 represents impassable terrain
 				tiles[x,y] = 1;
 			}
 		}
@@ -150,6 +153,7 @@ public class TileMap : MonoBehaviour
 		}
 	}
 
+	// create GameObjects based on array of tiles
 	void GenerateMapVisual()
 	{
 		for(int x=0; x < mapSizeX; x++)
