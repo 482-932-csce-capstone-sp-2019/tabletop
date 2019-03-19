@@ -10,6 +10,7 @@ public class toggleUI : MonoBehaviour
     void Start()
     {
         status = false;
+        UI.gameObject.SetActive(false);
     }
 
     public void toggle()
