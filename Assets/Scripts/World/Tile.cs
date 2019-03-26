@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Tile
 {
     Action<Tile> onTileTypeChanged;
@@ -12,7 +13,7 @@ public class Tile
     public int y { get; private set; }
     public int z { get; private set; }
     public bool isWalkable { get; private set; }
-    public unit unit { get; set; }
+    public bool unit { get; set; }
 
     public Tile(int x, int y, int z)
     {
@@ -20,8 +21,19 @@ public class Tile
         this.y = y;
         this.z = z;
         this.isWalkable = true;
+        this.unit = false;
 
-        type = Type.full;
+        type = Type.empty;
+    }
+
+    public Tile deepCopy()
+    {
+        Tile t = new Tile(this.x, this.y, this.z);
+        //t.onTileTypeChanged = this.onTileTypeChanged;
+        t.type = this.type;
+        t.isWalkable = this.isWalkable;
+        t.unit = this.unit;
+        return t;
     }
 
     public void setTileType(Tile.Type type)

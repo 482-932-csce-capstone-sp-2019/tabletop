@@ -158,26 +158,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tilesheet_0
-      rect:
-        serializedVersion: 2
-        x: 299
-        y: 299
-        width: 12
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d1840078705f2243bed3d0cc75eff3e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: full
       rect:
         serializedVersion: 2

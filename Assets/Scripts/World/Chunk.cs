@@ -34,4 +34,29 @@ public class Chunk : MonoBehaviour
         SpriteRenderer spriteRenderer = tileGOMap[tile].GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = SpriteManager.instance.getSprite(tile);
     }
+
+    public Tile[,] getTiles()
+    {
+        Tile[,] chunk = new Tile[size,size];
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                chunk[i,j] = tiles[i,j];
+            }
+        }
+        return chunk;
+    }
+
+    public void setTiles(Tile[,] chunk)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                tiles[i,j].setTileType(chunk[i,j].type);
+            }
+        }
+        Debug.Log("Tiles set");
+    }
 }
