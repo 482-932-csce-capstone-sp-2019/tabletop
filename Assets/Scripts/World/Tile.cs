@@ -23,7 +23,7 @@ public class Tile
         this.isWalkable = true;
         this.unit = false;
 
-        type = Type.empty;
+        type = Type.grass;
     }
 
     public Tile deepCopy()
