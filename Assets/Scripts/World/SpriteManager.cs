@@ -39,9 +39,15 @@ public class SpriteManager : MonoBehaviour
     void loadSprites()
     {
        Sprite [] sprites = Resources.LoadAll<Sprite>("tilesheet");
+       Sprite [] minecraft_sprites = Resources.LoadAll<Sprite>("textures_0");
+    //    Sprite grass_texture = Resources.Load<Sprite>("Texture Packs/grass/Grass");
        foreach(Sprite s in sprites)
        {
            tileSprites.Add(s.name, s);
        }
+       foreach(Sprite s in minecraft_sprites) {
+           tileSprites.Add(s.name, s);
+       }
+    //    tileSprites.Add("Grass", grass_texture);
     }
 }
