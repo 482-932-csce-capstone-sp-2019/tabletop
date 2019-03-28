@@ -14,7 +14,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
+  - Icons
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI backgrounds
+    uniqueID: 3968026379
+    locked: 0
+  - name: Icons
+    uniqueID: 1038836707
     locked: 0
