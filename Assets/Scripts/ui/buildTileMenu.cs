@@ -24,6 +24,8 @@ public class buildTileMenu : MonoBehaviour
         List<Dropdown.OptionData> items = new List<Dropdown.OptionData>();
         
         Sprite [] sprites = Resources.LoadAll<Sprite>("tilesheet");
+        Sprite [] minecraft_sprites = Resources.LoadAll<Sprite>("textures_0");
+        // Sprite grass_texture = Resources.Load<Sprite>("Texture Packs/grass/Grass");
 
         // Loop through each sprite
         foreach (var sprite in sprites)
@@ -36,6 +38,15 @@ public class buildTileMenu : MonoBehaviour
             var spriteOption = new Dropdown.OptionData(spriteName, sprite);
             items.Add(spriteOption);
         }
+        foreach (var sprite in minecraft_sprites) {
+            string spriteName = sprite.name;
+            if (spriteName.StartsWith("textures_")) {
+                continue;
+            }
+            var spriteOption = new Dropdown.OptionData(spriteName, sprite);
+            items.Add(spriteOption);
+        }
+        // items.Add(new Dropdown.OptionData("Grass", grass_texture));
 
         // Add the options to the drop down box
         m_dropdown.AddOptions(items);
