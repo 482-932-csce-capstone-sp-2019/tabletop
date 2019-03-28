@@ -5,12 +5,14 @@ Script found here: https://kylewbanks.com/blog/unity3d-panning-and-pinch-to-zoom
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
+
 
 public class CameraHandler : MonoBehaviour {
 
     private static readonly float PanSpeed = 20f;
     private static readonly float ZoomSpeedTouch = 0.1f;
-    private static readonly float ZoomSpeedMouse = 0.5f;
+    private static readonly float ZoomSpeedMouse = 2.5f;
     
     private static readonly float[] BoundsX = new float[]{-100f, 100f};
     private static readonly float[] BoundsY = new float[]{-100f, 100f};
@@ -81,9 +83,9 @@ public class CameraHandler : MonoBehaviour {
     void HandleMouse() {
         // On mouse down, capture it's position.
         // Otherwise, if the mouse is still down, pan the camera.
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
             lastPanPosition = Input.mousePosition;
-        } else if (Input.GetMouseButton(0)) {
+        } else if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
             PanCamera(Input.mousePosition);
         }
     
