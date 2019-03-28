@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c90cbedbd8c3e1c4cb043e36be965bd3
+guid: ac5d1186d81ca4549ad496315bdc3f94
 ScriptedImporter:
   fileIDToRecycleName:
-    100000: gameObject/brutal-helm
-    400000: gameObject/brutal-helm/Transform
-    21200000: gameObject/brutal-helm/SpriteRenderer
+    100000: gameObject/save
+    400000: gameObject/save/Transform
+    21200000: gameObject/save/SpriteRenderer
     21300000: sprite
     100100000: gameObject
   externalObjects: {}
@@ -51,5 +51,5 @@ ScriptedImporter:
         y: 0
         width: 0
         height: 0
-      spriteID: 2aad9ceaab9c16b4a8556197e80295b6
+      spriteID: 35bebd6d92610aa49aa0caa119faa646
     PhysicsOutlines: []
