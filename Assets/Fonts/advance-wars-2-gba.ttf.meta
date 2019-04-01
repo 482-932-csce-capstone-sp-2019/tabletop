@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: d4a0099affd12734c82f16ee29b7a344
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Advance Wars 2 GBA
+  fontNames:
+  - Advance Wars 2 GBA
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a13c737d2475d274baf0093e77ba48da, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
