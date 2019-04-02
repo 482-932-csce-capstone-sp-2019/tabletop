@@ -6,8 +6,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEditor;
 
+// The World class handles the whole "world's" behavior in the map editor.
 public class World : MonoBehaviour
 {
+    // the saveFile struct holds lists of playerLocation and serializableChunk
+    // structs which allow map states to be saved as binary files
     [System.Serializable]
     public struct saveFile
     {
@@ -15,6 +18,7 @@ public class World : MonoBehaviour
         public List<serializableChunk> map;
     }
 
+    // The serializableChunk struct serializes the tiles in the world for saving
     [System.Serializable]
     public struct serializableChunk
     {
@@ -22,6 +26,7 @@ public class World : MonoBehaviour
         public Tile[,] tiles;
     }
 
+    // playerLocation struct specifies the id and position of a player 
     [System.Serializable]
     public struct playerLocation
     {
@@ -58,33 +63,30 @@ public class World : MonoBehaviour
     void Start()
     {
         GameObject player = (GameObject)Instantiate( playerPrefab, new Vector3(0.5f, 0.5f, -1), Quaternion.identity );
-		// player.GetComponent<unit>().tileX = (int)player.transform.position.x;
-		// player.GetComponent<unit>().tileY = (int)player.transform.position.y;
         player.GetComponent<unit>().tileX = 0;
 		player.GetComponent<unit>().tileY = 0;
 		players = new List<GameObject>();
 		players.Add(player);
-
-        //dataPath = Path.Combine(Application.persistentDataPath, "map.dat");
     }
 
     // Update is called once per frame
     void Update()
     {
         FindChunksToLoad();
+        // runs this if it is the first pass of the Update() function
         if (firstPass)
         {
             // Add players to initial tiles
             Tile spawn = getTileAt(0,0);
-            spawn.unit = true;//players[0].GetComponent<unit>();
+            spawn.unit = true;
             firstPass = false;
         }
         DeleteChunks();
 
+        // handle mouse clicks
         if(Input.GetMouseButtonDown(0))
         {
-            // Vector3 mousePosition = Input.mousePosition;
-            // mousePosition.z = 1;
+            // get mouse position and tile at that position
             float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
             float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
             Tile t = getTileAt(mouseX, mouseY);
@@ -115,20 +117,12 @@ public class World : MonoBehaviour
             }
             else if (t != null && buildMode && !EventSystem.current.IsPointerOverGameObject())
             {
-                // if(t.type == Tile.Type.empty)
-                // {
-                //     t.setTileType(Tile.Type.full);
-                // }
-
-                // else if(t.type == Tile.Type.full)
-                // {
-                //     t.setTileType(Tile.Type.empty);
-                // }
                 t.setTileType(selectedTileType);
             }
         }
     }
 
+    // Loads chunks based on current camera position
     void FindChunksToLoad()
     {
         int xPos = (int)transform.position.x;
@@ -142,6 +136,7 @@ public class World : MonoBehaviour
         }
     }
 
+    // create a chunk of tiles at a position
     void CreateChunkAt(int x, int y)
     {
         x = Mathf.FloorToInt(x / (float)Chunk.size) * Chunk.size;
@@ -194,6 +189,8 @@ public class World : MonoBehaviour
         }
     }
 
+    // "deletes" chunks by removing them from view, but stores them 
+    // to render them correctly later
     void DeleteChunks()
     {
         List<Chunk> deleteChunks = new List<Chunk>(activeMap.Values);
@@ -210,12 +207,10 @@ public class World : MonoBehaviour
         while (deleteQueue.Count > 0)
         {
             Chunk chunk = deleteQueue.Dequeue();
-            //activeMap.Remove(chunk.transform.position);
-            // Save chunk here??
-            //Destroy(chunk.gameObject);
         }
     }
 
+    // returns the Chunk present at a position
     Chunk getChunkAt(int x, int y)
     {
         x = Mathf.FloorToInt(x / (float)Chunk.size) * Chunk.size;
@@ -232,6 +227,7 @@ public class World : MonoBehaviour
         }
     }
 
+    // returns the Tile present at a position (using int positions)
     Tile getTileAt(int x, int y)
     {
         Chunk chunk = getChunkAt(x,y);
@@ -245,6 +241,7 @@ public class World : MonoBehaviour
         }
     }
 
+    // returns the Tile present at a position (using float positions)
     Tile getTileAt(float x, float y)
     {
         int X = Mathf.FloorToInt(x);
@@ -260,8 +257,6 @@ public class World : MonoBehaviour
         }
     }
 
- 
-
 	public void unselectUnit()
 	{
 		if (selectedUnit != null)
@@ -272,6 +267,7 @@ public class World : MonoBehaviour
         selectedUnit = null;
 	}
 
+    // moves the selected unit from its initial Tile to a new Tile
 	public void moveUnit(Tile start, Tile end)
 	{
 		Debug.Log("Removing player from tile " + start.x + "," + start.y);
@@ -297,6 +293,7 @@ public class World : MonoBehaviour
         }
     }
 
+    // sets a Tile's type to the selected type in build mode
     public void setTileType(string type)
     {
         if(buildMode)
@@ -306,7 +303,8 @@ public class World : MonoBehaviour
         }
     }
 
-    public void load()//List<Chunk> chunks)
+    // load a map from a binary file
+    public void load()
     {
 
         // Delete all existing chunks
@@ -326,11 +324,11 @@ public class World : MonoBehaviour
 
         string path = EditorUtility.OpenFilePanel("Load map", "saves", "dat");
 
-        // Load new chunks into existance
-        if(File.Exists(path))//"map.dat"))
+        // Load new chunks into existence
+        if(File.Exists(path))
         {
             saveFile s = new saveFile();
-            using (Stream stream = File.Open(path,FileMode.Open))//"map.dat", FileMode.Open))
+            using (Stream stream = File.Open(path,FileMode.Open))
             {
                 var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                 s = (saveFile)bformatter.Deserialize(stream);
@@ -365,6 +363,7 @@ public class World : MonoBehaviour
             Debug.Log("There was an issue with the selected save file: [" + path + "]");
     }
 
+    // save a map as a binary file
     public void save()
     {
         if(savedChunks != null)
