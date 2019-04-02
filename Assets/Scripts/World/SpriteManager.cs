@@ -26,6 +26,7 @@ public class SpriteManager : MonoBehaviour
         
     }
 
+    // gets the Sprite based on Tile type
     public Sprite getSprite(Tile tile)
     {
         if(tileSprites.ContainsKey(tile.type.ToString()))
@@ -36,11 +37,11 @@ public class SpriteManager : MonoBehaviour
         return null;
     }
 
+    // Load Sprites from tilesheets
     void loadSprites()
     {
        Sprite [] sprites = Resources.LoadAll<Sprite>("tilesheet");
        Sprite [] minecraft_sprites = Resources.LoadAll<Sprite>("textures_0");
-    //    Sprite grass_texture = Resources.Load<Sprite>("Texture Packs/grass/Grass");
        foreach(Sprite s in sprites)
        {
            tileSprites.Add(s.name, s);
@@ -48,6 +49,5 @@ public class SpriteManager : MonoBehaviour
        foreach(Sprite s in minecraft_sprites) {
            tileSprites.Add(s.name, s);
        }
-    //    tileSprites.Add("Grass", grass_texture);
     }
 }

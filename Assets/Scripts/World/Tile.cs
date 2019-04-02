@@ -7,6 +7,7 @@ using UnityEngine;
 public class Tile
 {
     Action<Tile> onTileTypeChanged;
+    // this enum contains all the names of tile types that can be used in build mode
     public enum Type { empty, full, grass, green, wood, water_shallow, water_deep, red, white, dirt, cobble, lava, water, bedrock, mossy_cobble, acacia_plank, dark_oak_plank, birch_plank, oak_plank, jungle_plank, spruce_plank, smooth_quartz, chiseled_quartz_side, chiseled_quartz_top, quartz_pillar_side, quartz_pillar_top, quartz_block, sand, stone_double_slab, stone_slab, stone_bricks, chiseled_stone_bricks, cracked_stone_bricks, mossy_stone_bricks, andesite, polished_andesite, diorite, polished_diorite, granite, polished_granite }
     public Type type { get; private set; }
     public int x { get; private set; }
@@ -23,6 +24,7 @@ public class Tile
         this.isWalkable = true;
         this.unit = false;
 
+        // set type to grass by default
         type = Type.grass;
     }
 

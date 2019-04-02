@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
+
+// creates a grid overlay on top of Tiles
 public class GridMesh : MonoBehaviour
 {
     public int GridSize;
