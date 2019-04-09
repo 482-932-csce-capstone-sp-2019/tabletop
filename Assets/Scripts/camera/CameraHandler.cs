@@ -21,6 +21,7 @@ public class CameraHandler : MonoBehaviour {
     private Camera cam;
     
     private Vector3 lastPanPosition;
+    private Vector3 returnToPos;
     private int panFingerId; // Touch mode only
     
     private bool wasZoomingLastFrame; // Touch mode only
@@ -83,17 +84,37 @@ public class CameraHandler : MonoBehaviour {
     void HandleMouse() {
         // On mouse down, capture it's position.
         // Otherwise, if the mouse is still down, pan the camera.
+  
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
             lastPanPosition = Input.mousePosition;
+            returnToPos = transform.position;
         } else if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
-            PanCamera(Input.mousePosition);
-        }
-    
+            PanCamera(Input.mousePosition );
+        }else if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject()) {
+            returnCamera();
+        }   
+
         // Check for scrolling to zoom the camera
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         ZoomCamera(scroll, ZoomSpeedMouse);
     }
-    
+
+    void returnCamera() {
+        // Determine how much to move the camera
+        //Vector3 offset = cam.ScreenToViewportPoint(transform.position - returnToPos);
+        //Vector3 move = new Vector3(offset.x * PanSpeed, offset.y * PanSpeed, 0);
+
+        // Perform the movement
+        //transform.Translate(move);
+
+        // Ensure the camera remains within bounds.
+        //Vector3 pos = transform.position;
+        //pos.x = Mathf.Clamp(transform.position.x, BoundsX[0], BoundsX[1]);
+        //pos.y = Mathf.Clamp(transform.position.y, BoundsY[0], BoundsY[1]);
+        //transform.position = pos;
+        transform.position = returnToPos;
+    }
+
     void PanCamera(Vector3 newPanPosition) {
         // Determine how much to move the camera
         Vector3 offset = cam.ScreenToViewportPoint(lastPanPosition - newPanPosition);
