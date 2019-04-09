@@ -41,8 +41,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: UI backgrounds
-    uniqueID: 3968026379
+  - name: Map Image
+    uniqueID: 3758108563
+    locked: 0
+  - name: Map Overlay
+    uniqueID: 3592881939
     locked: 0
   - name: Icons
     uniqueID: 1038836707

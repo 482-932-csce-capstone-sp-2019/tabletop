@@ -16,6 +16,7 @@ public class World : MonoBehaviour
     {
         public List<playerLocation> players;
         public List<serializableChunk> map;
+        public serializedImportedMap importedMap;
     }
 
     // The serializableChunk struct serializes the tiles in the world for saving
@@ -31,6 +32,15 @@ public class World : MonoBehaviour
     public struct playerLocation
     {
         public int id, x, y;
+    }
+
+    // playerLocation struct specifies the id and position of a player 
+    [System.Serializable]
+    public struct serializedImportedMap
+    {
+        public int width, height;
+        public byte[] bytes;
+        public float xScale, yScale;
     }
 
     public float renderDistance = 15;
@@ -50,6 +60,11 @@ public class World : MonoBehaviour
     bool firstPass = true;
 
     string dataPath;
+    public GameObject importedMapOverlay;
+
+    Vector3 velocity;
+    Vector3 autoAdjustOffset = new Vector3(0,0,-10f);
+    float smoothTime = 0.5f;
 
     void Awake()
     {
@@ -65,8 +80,24 @@ public class World : MonoBehaviour
         GameObject player = (GameObject)Instantiate( playerPrefab, new Vector3(0.5f, 0.5f, -1), Quaternion.identity );
         player.GetComponent<unit>().tileX = 0;
 		player.GetComponent<unit>().tileY = 0;
-		players = new List<GameObject>();
-		players.Add(player);
+        GameObject player1 = (GameObject)Instantiate(playerPrefab, new Vector3(1.5f, 0.5f, -1), Quaternion.identity);
+        player1.GetComponent<unit>().tileX = 1;
+        player1.GetComponent<unit>().tileY = 0;
+        GameObject player2 = (GameObject)Instantiate(playerPrefab, new Vector3(2.5f, 0.5f, -1), Quaternion.identity);
+        player2.GetComponent<unit>().tileX = 2;
+        player2.GetComponent<unit>().tileY = 0;
+        GameObject player3 = (GameObject)Instantiate(playerPrefab, new Vector3(-.5f, 0.5f, -1), Quaternion.identity);
+        player3.GetComponent<unit>().tileX = -1;
+        player3.GetComponent<unit>().tileY = 0;
+        GameObject player4 = (GameObject)Instantiate(playerPrefab, new Vector3(-1.5f, 0.5f, -1), Quaternion.identity);
+        player4.GetComponent<unit>().tileX = -2;
+        player4.GetComponent<unit>().tileY =0;
+        players = new List<GameObject>();
+        players.Add(player);
+        players.Add(player1);
+        players.Add(player2);
+        players.Add(player3);
+        players.Add(player4);
     }
 
     // Update is called once per frame
@@ -79,6 +110,14 @@ public class World : MonoBehaviour
             // Add players to initial tiles
             Tile spawn = getTileAt(0,0);
             spawn.unit = true;
+            Tile spawn1 = getTileAt(1, 0);
+            spawn1.unit = true;
+            Tile spawn2 = getTileAt(2, 0);
+            spawn2.unit = true;
+            Tile spawn3 = getTileAt(-1, 0);
+            spawn3.unit = true;
+            Tile spawn4 = getTileAt(-2, 0);
+            spawn4.unit = true;
             firstPass = false;
         }
         DeleteChunks();
@@ -122,6 +161,22 @@ public class World : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        Vector3 centerPoint = getCenterPoint() + autoAdjustOffset;
+        Camera.main.transform.position = Vector3.SmoothDamp(Camera.main.transform.position, centerPoint, ref velocity, smoothTime);
+
+    }
+
+    Vector3 getCenterPoint() {
+        var bounds = new Bounds(players[0].transform.position, Vector3.zero);
+
+        for (int i= 0; i < players.Count; i++) {
+            bounds.Encapsulate(players[i].transform.position);
+        }
+
+        return bounds.center;
+    }
     // Loads chunks based on current camera position
     void FindChunksToLoad()
     {
@@ -357,6 +412,14 @@ public class World : MonoBehaviour
                 unselectUnit();
             }
 
+            serializedImportedMap mapImage = new serializedImportedMap();
+            mapImage = s.importedMap;
+            Texture2D tex = new Texture2D(mapImage.width, mapImage.height);
+            ImageConversion.LoadImage(tex, mapImage.bytes);
+            Sprite m_Sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), Vector2.zero);
+            importedMapOverlay.GetComponent<SpriteRenderer>().sprite = m_Sprite;
+            importedMapOverlay.transform.localScale = new Vector3(mapImage.xScale, mapImage.yScale, 1);
+
             Debug.Log("Loaded map and players for file: [" + path + "]");
         }
         else
@@ -403,10 +466,19 @@ public class World : MonoBehaviour
             playerLocations.Add(player);
         }
 
+        serializedImportedMap mapOverlay = new serializedImportedMap();
+        Texture2D tex = importedMapOverlay.GetComponent<SpriteRenderer>().sprite.texture;
+        mapOverlay.width = tex.width;
+        mapOverlay.height = tex.height;
+        mapOverlay.bytes = ImageConversion.EncodeToPNG(tex);
+        mapOverlay.xScale = importedMapOverlay.transform.localScale.x;
+        mapOverlay.yScale = importedMapOverlay.transform.localScale.y;
+
         saveFile s = new saveFile();
         string path = EditorUtility.SaveFilePanel("Save map", "saves", "map", "dat");
         s.players = playerLocations;
         s.map = savedChunks;
+        s.importedMap = mapOverlay;
         FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
         BinaryFormatter bf = new BinaryFormatter();
         bf.Serialize(fs, s);
