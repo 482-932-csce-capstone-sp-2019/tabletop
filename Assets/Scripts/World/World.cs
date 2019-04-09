@@ -16,6 +16,7 @@ public class World : MonoBehaviour
     {
         public List<playerLocation> players;
         public List<serializableChunk> map;
+        public serializedImportedMap importedMap;
     }
 
     // The serializableChunk struct serializes the tiles in the world for saving
@@ -31,6 +32,15 @@ public class World : MonoBehaviour
     public struct playerLocation
     {
         public int id, x, y;
+    }
+
+    // playerLocation struct specifies the id and position of a player 
+    [System.Serializable]
+    public struct serializedImportedMap
+    {
+        public int width, height;
+        public byte[] bytes;
+        public float xScale, yScale;
     }
 
     public float renderDistance = 15;
@@ -50,6 +60,7 @@ public class World : MonoBehaviour
     bool firstPass = true;
 
     string dataPath;
+    public GameObject importedMapOverlay;
 
     void Awake()
     {
@@ -357,6 +368,14 @@ public class World : MonoBehaviour
                 unselectUnit();
             }
 
+            serializedImportedMap mapImage = new serializedImportedMap();
+            mapImage = s.importedMap;
+            Texture2D tex = new Texture2D(mapImage.width, mapImage.height);
+            ImageConversion.LoadImage(tex, mapImage.bytes);
+            Sprite m_Sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), Vector2.zero);
+            importedMapOverlay.GetComponent<SpriteRenderer>().sprite = m_Sprite;
+            importedMapOverlay.transform.localScale = new Vector3(mapImage.xScale, mapImage.yScale, 1);
+
             Debug.Log("Loaded map and players for file: [" + path + "]");
         }
         else
@@ -403,10 +422,19 @@ public class World : MonoBehaviour
             playerLocations.Add(player);
         }
 
+        serializedImportedMap mapOverlay = new serializedImportedMap();
+        Texture2D tex = importedMapOverlay.GetComponent<SpriteRenderer>().sprite.texture;
+        mapOverlay.width = tex.width;
+        mapOverlay.height = tex.height;
+        mapOverlay.bytes = ImageConversion.EncodeToPNG(tex);
+        mapOverlay.xScale = importedMapOverlay.transform.localScale.x;
+        mapOverlay.yScale = importedMapOverlay.transform.localScale.y;
+
         saveFile s = new saveFile();
         string path = EditorUtility.SaveFilePanel("Save map", "saves", "map", "dat");
         s.players = playerLocations;
         s.map = savedChunks;
+        s.importedMap = mapOverlay;
         FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
         BinaryFormatter bf = new BinaryFormatter();
         bf.Serialize(fs, s);
