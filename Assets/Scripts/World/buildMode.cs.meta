@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 4a34ede7363c0bb45b49ae50207016a6
+guid: 9a16bc1c82c6aa9459c987caa556a24b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - tileHighlightPrefab: {fileID: 3044448642949150606, guid: 27c1d6281cc8d344a991255c0934c523,
-      type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -46,6 +46,8 @@ public class World : MonoBehaviour
     public float renderDistance = 15;
     Dictionary<Vector2, Chunk> chunkMap;
     Dictionary<Vector2, Chunk> activeMap;
+    public Dictionary<Vector2, GameObject> tileHighlightMap { get; set; }
+    public GameObject tileHighlightPrefab;
     List<serializableChunk> savedChunks;
     public GameObject chunkGO;
 
@@ -72,6 +74,7 @@ public class World : MonoBehaviour
         activeMap = new Dictionary<Vector2, Chunk>();
         savedChunks = new List<serializableChunk>();
         buildMode = false;
+        tileHighlightMap = new Dictionary<Vector2, GameObject>();
     }
 
     // Start is called before the first frame update
@@ -125,6 +128,9 @@ public class World : MonoBehaviour
         // handle mouse clicks
         if(Input.GetMouseButtonDown(0))
         {
+            // Disable camera movement script
+            //(Camera.main.GetComponent("CameraHandler") as MonoBehaviour).enabled = false;
+
             // get mouse position and tile at that position
             float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
             float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
@@ -156,8 +162,13 @@ public class World : MonoBehaviour
             }
             else if (t != null && buildMode && !EventSystem.current.IsPointerOverGameObject())
             {
-                t.setTileType(selectedTileType);
+                //t.setTileType(selectedTileType);
             }
+        }
+        if(Input.GetMouseButtonUp(0))
+        {
+            // Re-enable camera movement script
+            //(Camera.main.GetComponent("CameraHandler") as MonoBehaviour).enabled = true;
         }
     }
 
@@ -244,6 +255,39 @@ public class World : MonoBehaviour
         }
     }
 
+    public void buildSelection()
+    {
+        foreach( var tilePosition in tileHighlightMap.Keys )
+        {
+            Tile t = getTileAt(tilePosition.x, tilePosition.y);
+            t.setTileType(selectedTileType);
+        }
+    }
+
+    public void createTileHighlightAt(int x, int y)
+    {
+        Quaternion rotation = Quaternion.Euler(0,90,-90);
+        GameObject highlight = (GameObject)Instantiate(tileHighlightPrefab, new Vector3(x + 0.5f, y + 0.5f, -1.0f), rotation);
+        Vector2 tilePosition = new Vector2(x,y);
+        tileHighlightMap[tilePosition] = highlight;
+    }
+
+    public void deleteTileHighlightAt(int x, int y)
+    {
+        Vector2 tilePosition = new Vector2(x,y);
+        GameObject.Destroy(tileHighlightMap[tilePosition]);
+        tileHighlightMap.Remove(tilePosition);
+    }
+
+    public void deleteAllTileHighlights()
+    {
+        foreach(var highlightGO in tileHighlightMap.Values)
+        {
+            GameObject.Destroy(highlightGO);
+        }
+        tileHighlightMap.Clear();
+    }
+
     // "deletes" chunks by removing them from view, but stores them 
     // to render them correctly later
     void DeleteChunks()
@@ -266,7 +310,7 @@ public class World : MonoBehaviour
     }
 
     // returns the Chunk present at a position
-    Chunk getChunkAt(int x, int y)
+    public Chunk getChunkAt(int x, int y)
     {
         x = Mathf.FloorToInt(x / (float)Chunk.size) * Chunk.size;
         y = Mathf.FloorToInt(y / (float)Chunk.size) * Chunk.size;
