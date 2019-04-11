@@ -43,6 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82afaef351362114f8547fede5180214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  full: {fileID: 21300004, guid: 7d0775324b683084c87f6fc070bd786c, type: 3}
-  empty: {fileID: 21300000, guid: 7d0775324b683084c87f6fc070bd786c, type: 3}
-  grass: {fileID: 21300008, guid: 7d0775324b683084c87f6fc070bd786c, type: 3}
+  tileHighlightPrefab: {fileID: 3044448642949150606, guid: 27c1d6281cc8d344a991255c0934c523,
+    type: 3}
