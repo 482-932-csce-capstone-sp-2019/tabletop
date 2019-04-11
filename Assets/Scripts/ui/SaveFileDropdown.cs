@@ -31,6 +31,8 @@ public class SaveFileDropdown : MonoBehaviour
         {
             string save_file = f.ToString();
             string new_save = "";
+
+            //Magnificent string manipulation to avoid Regex
             for (int i = save_file.Length; i --> 0; )
             {
                 if (save_file[i].Equals('\\'))
@@ -48,13 +50,5 @@ public class SaveFileDropdown : MonoBehaviour
         }
         
         dropdown.AddOptions(items);
-
-        //var saves_files = FileNamesFromFolder("../saves/");
-        //dropdown.AddOptions(saves_files);
-        /* 
-        dropdown.ClearOptions();
-        List<string> names = new List<string>() {"test"};
-        dropdown.AddOptions(names);
-        */
     }
 }
