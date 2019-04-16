@@ -50,6 +50,14 @@ The `Awake`, `Start`, and `Update` functions are special Unity functions. Thorou
   - DeleteChunks deletes all Chunks in the activeMap Dictionary.
 - `Chunk getChunkAt(int x, int y)`
   - getChunkAt returns the Chunk at position (x, y). 
+- `public void buildSelection()`
+  - buildSelection iterates through all tiles in tileHighlightMap and calls setTileType on them.
+- `public void createTileHighlightAt(int x, int y)`
+  - This function creates GameObjects that highlight the proper tiles to show that they have been selected. The object is then added to the tileHighlightMap variable for later use.
+- `public void deleteTileHighlightAt(int x, int y)`
+  - deleteTileHighlightAt deletes the highlight from a tile at position (x, y).
+- `public void deleteAllTileHighlights()`
+  - deleteAllTileHighlights iterates through tileHighlightMap and destroys each GameObject and clears the map.  
 - `Tile getTileAt(int x, int y)`
   - getTileAt returns the Tile at position (x, y).
 - `Tile getTileAt(float x, float y)`
@@ -67,11 +75,42 @@ The `Awake`, `Start`, and `Update` functions are special Unity functions. Thorou
 - `public void save()`
   - save saves a game state to a binary file
 
+## buildMode.cs
+
+This file describes the behavior of the game when in Build Mode. Build
+mode is for creating and editing maps.
+
+### Class Variables
+
+- `bool isSelecting = false`
+- `Vector3 mousePosition1`
+- `static Texture2D _selection Texture`
+- `public GameObject worldGO`
+- `private World world`
+
+### Class Methods
+
+- `void Start()`
+  - Instantiates the class variable `world` to the current World.
+
+- `void Update()`
+  - Update runs once per frame. In this context, Update works to take
+    user input and figure out what to do with it. 
+- `public static Texture2D selectionTexture`
+  - selectionTexture does something (TODO: write this one)
+- `public static void DrawScreenRect(Rect rect, Color color)`
+  - DrawScreenRect draws the selection area on the screen.
+- `public static void DrawScreenRectBorder(Rect rect, float thickness, Color color)` 
+  - DrawScreenRectBorder draws the border of the selection area.
+- `public static Rect GetScreenRect(Vector3 screenPosition1, Vector3 screenPosition2)`
+  - GetScreenRect returns the Rectangle defined by the bounds of the screen.
+
+
 ## Chunk.cs
 TODO: describe what a Chunk is
 - `Tile[,] getTiles()`
   - getTiles returns an Array containing the Tile objects from the specified Chunk.
-- `void setTiles(Tile[,] chunk)
+- `void setTiles(Tile[,] chunk)`
   - setTiles uses an Array of Tiles to set the type of all Tiles in a Chunk.
 - 
 
