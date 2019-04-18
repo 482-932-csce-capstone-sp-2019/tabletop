@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEditor;
+using UnityEngine.EventSystems;
 
 // The World class handles the whole "world's" behavior in the map editor.
 public class World : MonoBehaviour
@@ -64,9 +65,12 @@ public class World : MonoBehaviour
     string dataPath;
     public GameObject importedMapOverlay;
 
+
     Vector3 velocity;
     Vector3 autoAdjustOffset = new Vector3(0,0,-10f);
     float smoothTime = 0.5f;
+
+    float startTime, endTime, numClicks = 0;
 
     void Awake()
     {
@@ -172,10 +176,31 @@ public class World : MonoBehaviour
         }
     }
 
+
     private void LateUpdate()
     {
-        Vector3 centerPoint = getCenterPoint() + autoAdjustOffset;
-        Camera.main.transform.position = Vector3.SmoothDamp(Camera.main.transform.position, centerPoint, ref velocity, smoothTime);
+        //startTime = 0f;
+        //endTime = 0f;
+        
+       /* if (Input.GetMouseButtonDown(0) && startTime == 0) {
+            //numClicks = 0;
+            numClicks++;
+            startTime = Time.time;
+        }
+        if (numClicks == 1 && Time.time - startTime < 0.5f && Input.GetMouseButtonDown(0)) {
+            numClicks++;
+        }
+        if (Time.time - startTime >= 0.5f || numClicks >=2){
+            numClicks = 0;
+            startTime = 0;
+        }*/
+        if (Input.GetMouseButtonDown(2)) {
+            Debug.Log("adjusting camera");
+            Vector3 centerPoint = getCenterPoint() + autoAdjustOffset;
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, centerPoint, 1f);
+        }
+        
+       
 
     }
 
