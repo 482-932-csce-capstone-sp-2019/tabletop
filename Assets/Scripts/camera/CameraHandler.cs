@@ -13,7 +13,8 @@ public class CameraHandler : MonoBehaviour {
     private static readonly float PanSpeed = 20f;
     private static readonly float ZoomSpeedTouch = 0.1f;
     private static readonly float ZoomSpeedMouse = 2.5f;
-    
+    float lerpspeed = 1f;
+
     private static readonly float[] BoundsX = new float[]{-100f, 100f};
     private static readonly float[] BoundsY = new float[]{-100f, 100f};
     private static readonly float[] ZoomBounds = new float[]{10f, 85f};
@@ -39,7 +40,12 @@ public class CameraHandler : MonoBehaviour {
             HandleMouse();
         }
     }
-    
+
+    void LateUpdate()
+    {
+        HandleMouseCamera();
+    }
+
     void HandleTouch() {
         switch(Input.touchCount) {
     
@@ -80,26 +86,45 @@ public class CameraHandler : MonoBehaviour {
             break;
         }
     }
-    
+
+    void HandleMouseCamera()
+    {
+        if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
+        {
+            returnToPos = transform.position;
+        }
+        else if (Input.GetMouseButtonUp(1) && !EventSystem.current.IsPointerOverGameObject())
+        {
+            returnCamera(Input.mousePosition);
+        }
+    }
+
     void HandleMouse() {
         // On mouse down, capture it's position.
         // Otherwise, if the mouse is still down, pan the camera.
-  
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
+
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject()) {
             lastPanPosition = Input.mousePosition;
-            returnToPos = transform.position;
-        } else if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
-            PanCamera(Input.mousePosition );
-        }else if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject()) {
-            returnCamera();
-        }   
+        } else if (Input.GetMouseButton(0) || Input.GetMouseButton(1)  && !EventSystem.current.IsPointerOverGameObject()) {
+            PanCamera(Input.mousePosition);
+        } 
 
         // Check for scrolling to zoom the camera
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         ZoomCamera(scroll, ZoomSpeedMouse);
     }
 
-    void returnCamera() {
+    void returnCamera(Vector3 returnPos) {
+
+        //Vector3 offset = returnToPos - returnPos;
+        //Vector3 move = new Vector3(offset.x * PanSpeed, offset.y * PanSpeed, 0);
+
+        //transform.Translate(move, Space.World);
+        //Vector3 pos = transform.position;
+        //pos.x = Mathf.Clamp(transform.position.x, BoundsX[0], BoundsX[1]);
+        //pos.y = Mathf.Clamp(transform.position.y, BoundsY[0], BoundsY[1]);
+        //transform.position = pos;
+        //returnToPos = returnPos;
         // Determine how much to move the camera
         //Vector3 offset = cam.ScreenToViewportPoint(transform.position - returnToPos);
         //Vector3 move = new Vector3(offset.x * PanSpeed, offset.y * PanSpeed, 0);
@@ -111,8 +136,23 @@ public class CameraHandler : MonoBehaviour {
         //Vector3 pos = transform.position;
         //pos.x = Mathf.Clamp(transform.position.x, BoundsX[0], BoundsX[1]);
         //pos.y = Mathf.Clamp(transform.position.y, BoundsY[0], BoundsY[1]);
-        //transform.position = pos;
-        transform.position = returnToPos;
+
+        float t = 0.0f;
+        while (t < 1.0f)
+        {
+            t += Time.deltaTime * (Time.timeScale / lerpspeed);
+        }
+      
+        transform.position = Vector3.Lerp(returnPos, returnToPos, t);
+       
+
+        //transform.position = returnToPos;
+        //Vector3 offset = cam.ScreenToViewportPoint(returnToPos - returnPos);
+        //Vector3 move = new Vector3(offset.x * PanSpeed, offset.y * PanSpeed, 0);
+
+        // Perform the movement
+        //transform.Translate(move, Space.World);
+
     }
 
     void PanCamera(Vector3 newPanPosition) {
