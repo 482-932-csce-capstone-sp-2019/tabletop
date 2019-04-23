@@ -1,0 +1,1128 @@
+fileFormatVersion: 2
+guid: 79a7c225f9d042d468e310943d38caee
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Terrain_0
+    21300002: Terrain_1
+    21300004: Terrain_2
+    21300006: Terrain_3
+    21300008: grass_1
+    21300010: grass_2
+    21300012: flowers_1
+    21300014: flowers_2
+    21300016: Terrain_8
+    21300018: Terrain_9
+    21300020: Terrain_10
+    21300022: Terrain_11
+    21300024: Terrain_12
+    21300026: Terrain_13
+    21300028: Terrain_14
+    21300030: Terrain_15
+    21300032: Terrain_16
+    21300034: water_rocks
+    21300036: Terrain_18
+    21300038: Terrain_19
+    21300040: Terrain_20
+    21300042: Terrain_21
+    21300044: Terrain_22
+    21300046: Terrain_23
+    21300048: Terrain_24
+    21300050: Terrain_25
+    21300052: Terrain_26
+    21300054: Terrain_27
+    21300056: Terrain_28
+    21300058: Terrain_29
+    21300060: Terrain_30
+    21300062: Terrain_31
+    21300064: Terrain_32
+    21300066: Terrain_33
+    21300068: Terrain_34
+    21300070: Terrain_35
+    21300072: Terrain_36
+    21300074: Terrain_37
+    21300076: Terrain_38
+    21300078: Terrain_39
+    21300080: Terrain_40
+    21300082: Terrain_41
+    21300084: Terrain_42
+    21300086: Terrain_43
+    21300088: Terrain_44
+    21300090: Terrain_45
+    21300092: Terrain_46
+    21300094: Terrain_47
+    21300096: pond
+    21300098: Terrain_49
+    21300100: island
+    21300102: Terrain_51
+    21300104: Terrain_52
+    21300106: island_rocks
+    21300108: Terrain_54
+    21300110: Terrain_55
+    21300112: Terrain_56
+    21300114: Terrain_57
+    21300116: Terrain_58
+    21300118: Terrain_59
+    21300120: Terrain_60
+    21300122: Terrain_61
+    21300124: Terrain_62
+    21300126: Terrain_63
+    21300128: shoreline_1
+    21300130: shoreline_2
+    21300132: shoreline_3
+    21300134: shoreline_4
+    21300136: shoreline_5
+    21300138: shoreline_6
+    21300140: shoreline_7
+    21300142: shoreline_8
+    21300144: Terrain_72
+    21300146: Terrain_73
+    21300148: Terrain_74
+    21300150: Terrain_75
+    21300152: Terrain_76
+    21300154: Terrain_77
+    21300156: Terrain_78
+    21300158: Terrain_79
+    21300160: Terrain_80
+    21300162: Terrain_81
+    21300164: Terrain_82
+    21300166: Terrain_83
+    21300168: Terrain_84
+    21300170: Terrain_85
+    21300172: Terrain_86
+    21300174: Terrain_87
+    21300176: Terrain_88
+    21300178: Terrain_89
+    21300180: Terrain_90
+    21300182: Terrain_91
+    21300184: evergreen_2x2
+    21300186: Terrain_93
+    21300188: evergreen_diamond
+    21300190: Terrain_95
+    21300192: Terrain_96
+    21300194: evergreen_x
+    21300196: Terrain_98
+    21300198: Terrain_99
+    21300200: evergreen_
+    21300202: evergreen_surrounded
+    21300204: Terrain_102
+    21300206: Terrain_103
+    21300208: Terrain_104
+    21300210: Terrain_105
+    21300212: Terrain_106
+    21300214: Terrain_107
+    21300216: Terrain_108
+    21300218: Terrain_109
+    21300220: Terrain_110
+    21300222: Terrain_111
+    21300224: Terrain_112
+    21300226: Terrain_113
+    21300228: Terrain_114
+    21300230: Terrain_115
+    21300232: tree_2x2
+    21300234: Terrain_117
+    21300236: tree_diamond
+    21300238: Terrain_119
+    21300240: Terrain_120
+    21300242: tree_x
+    21300244: Terrain_122
+    21300246: Terrain_123
+    21300248: tree_
+    21300250: tree_surrounded
+    21300252: Terrain_126
+    21300254: Terrain_127
+    21300256: Terrain_128
+    21300258: Terrain_129
+    21300260: Terrain_130
+    21300262: Terrain_131
+    21300264: Terrain_132
+    21300266: Terrain_133
+    21300268: Terrain_134
+    21300270: Terrain_135
+    21300272: Terrain_136
+    21300274: Terrain_137
+    21300276: Terrain_138
+    21300278: Terrain_139
+    21300280: mountain_small_2x2
+    21300282: Terrain_141
+    21300284: mountain_small_diamond
+    21300286: Terrain_143
+    21300288: Terrain_144
+    21300290: mountain_small_x
+    21300292: Terrain_146
+    21300294: Terrain_147
+    21300296: mountain_small
+    21300298: mountain_small_surrounded
+    21300300: Terrain_150
+    21300302: Terrain_151
+    21300304: Terrain_152
+    21300306: Terrain_153
+    21300308: Terrain_154
+    21300310: Terrain_155
+    21300312: Terrain_156
+    21300314: Terrain_157
+    21300316: Terrain_158
+    21300318: Terrain_159
+    21300320: Terrain_160
+    21300322: Terrain_161
+    21300324: Terrain_162
+    21300326: Terrain_163
+    21300328: mountain_2x2
+    21300330: Terrain_165
+    21300332: mountain_diamond
+    21300334: Terrain_167
+    21300336: Terrain_168
+    21300338: mountain_x
+    21300340: Terrain_170
+    21300342: Terrain_171
+    21300344: mountain
+    21300346: mountain_surrounded
+    21300348: Terrain_174
+    21300350: Terrain_175
+    21300352: Terrain_176
+    21300354: Terrain_177
+    21300356: Terrain_178
+    21300358: Terrain_179
+    21300360: Terrain_180
+    21300362: Terrain_181
+    21300364: mountain_large
+    21300366: Terrain_183
+    21300368: Terrain_184
+    21300370: Terrain_185
+    21300372: Terrain_186
+    21300374: Terrain_187
+    21300376: tree_large
+    21300378: Terrain_189
+    21300380: Terrain_190
+    21300382: Terrain_191
+    21300384: Terrain_192
+    21300386: Terrain_193
+    21300388: Terrain_194
+    21300390: Terrain_195
+    21300392: Terrain_196
+    21300394: Terrain_197
+    21300396: Terrain_198
+    21300398: Terrain_199
+    21300400: Terrain_200
+    21300402: Terrain_201
+    21300404: Terrain_202
+    21300406: Terrain_203
+    21300408: Terrain_204
+    21300410: Terrain_205
+    21300412: grass_tall
+    21300414: Terrain_207
+    21300416: Terrain_208
+    21300418: Bush
+    21300420: Terrain_210
+    21300422: Terrain_211
+    21300424: Terrain_212
+    21300426: Terrain_213
+    21300428: Terrain_214
+    21300430: Terrain_215
+    21300432: Terrain_216
+    21300434: Terrain_217
+    21300436: Terrain_218
+    21300438: Terrain_219
+    21300440: Terrain_220
+    21300442: Terrain_221
+    21300444: Terrain_222
+    21300446: Terrain_223
+    21300448: Terrain_224
+    21300450: Terrain_225
+    21300452: Terrain_226
+    21300454: Terrain_227
+    21300456: Terrain_228
+    21300458: Terrain_229
+    21300460: Terrain_230
+    21300462: Terrain_231
+    21300464: Terrain_232
+    21300466: Terrain_233
+    21300468: Terrain_234
+    21300470: Terrain_235
+    21300472: Terrain_236
+    21300474: Terrain_237
+  externalObjects: {}
+  serializedVersion: 9
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: grass_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 464
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff2cd299e3734b04583335a9b804d758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 464
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a47e035def481f4581cb3aa55abba78
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flowers_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 464
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99552a823e41a8c47b76be7b2f535909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flowers_2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 464
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d04a9c23c29171846a61b40a9ee28662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: water_rocks
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 448
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fa8fce9529b9c54fafb1e6cf9e357f2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pond
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 416
+        width: 32
+        height: 32
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d96aa47f50ab484a89491d1c83b0ea3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: island
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 416
+        width: 48
+        height: 48
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66143658e0d05bc40b5bc69b689dd13a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shoreline_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 156d53ee2e48c714c9946754ad93c8f4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shoreline_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 400
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bfbb598d52b16a4cba41a3168a56c75
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shoreline_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 400
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 250634b0bbd3f114b8676f83c91ede9c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shoreline_4
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 400
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c11142d12d1dad648a79e2ebee8d72fd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shoreline_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 400
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4348597054d0614ca5b2b485b1c7cfc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shoreline_6
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 400
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14647decff1571847ac1e34b945ed0dd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shoreline_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 400
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0890593dd537e484192981a4664a5df8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shoreline_8
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 400
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28eaf09afdf2f3849880e6cf780c2073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: evergreen_2x2
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 288
+        width: 32
+        height: 32
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d56a1eabcd561646aa2cc70db6d3e29
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: evergreen_diamond
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 272
+        width: 48
+        height: 48
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7849b2f00240724ca73c9d21fa82782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: evergreen_x
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 272
+        width: 48
+        height: 48
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2edcf1cd4d88d5c46b145245a501e90c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: evergreen_
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 272
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7356d72c5d12d9b468cefa3875623c33
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: evergreen_surrounded
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 272
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8b915d4b406cba4d82eefaab2f4dffb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree_2x2
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 240
+        width: 32
+        height: 32
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c93be68b4bccfcd449ea8b762d3a2ddf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree_diamond
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 224
+        width: 48
+        height: 48
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91f74cd0c268823499e55d95d33a1732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree_x
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 224
+        width: 48
+        height: 48
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecb3010baf90cb44b98c01212afe847b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree_
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 224
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3666ffad19c103244865e675bc81105f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree_surrounded
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 224
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bcba10f6e0abd54da6c34dd174b6120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mountain_small_2x2
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 32
+        height: 32
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffa2367929b6e42439a779bd3b6cb154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mountain_small_diamond
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 176
+        width: 48
+        height: 48
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 552bd454d3c028045a0ccadf4fbd8f19
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mountain_small_x
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 176
+        width: 48
+        height: 48
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fc81dca99dd0bb459c2f875d9c6d9f4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mountain_small
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 176
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 741539c0f30a6234cbce57b558d424de
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mountain_small_surrounded
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 176
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f03f1ec7103969242b3d0071a6c62524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mountain_2x2
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 144
+        width: 32
+        height: 32
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4170fd3dc1630f34599b5a87a13e1f5b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mountain_diamond
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 48
+        height: 48
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30a0184472ba60644b4e3bc4b95fb869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mountain_x
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 128
+        width: 48
+        height: 48
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fbc10f0bcb46e249a2822c4d2504a62
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mountain
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 128
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0c98d0adc8bdc242843173439876dfa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mountain_surrounded
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 128
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2675c2bbf484c34abb103d99f94a5f0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mountain_large
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 32
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76577529cfd931544986a2ad3030c933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree_large
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 96
+        width: 32
+        height: 32
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e7137848cc32974f98a36c854988238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass_tall
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 48
+        width: 48
+        height: 48
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22bdbfcc9150c904dbc65145bc879c8c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bush
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 48
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d08e5f7167564da45be272daf1285742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 31786e940f5b384428bca337d36f36bb
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
 public class mapImport : MonoBehaviour
 {
+    public static mapImport instance;
     Sprite m_Sprite;
     private GameObject grid;
     private GameObject UI;
     public GameObject instructions;
     private void Start()
     {
+        instance = this;
         grid = GameObject.Find("Grid Overlay");
         UI = GameObject.Find("UI");
     }
 
-    public void loadImage()
+    public void loadImage(string absolutePath)
     {
-        string absolutePath = EditorUtility.OpenFilePanel("Import map image", "map images", "*");
         m_Sprite = IMG2Sprite.LoadNewSprite(absolutePath);
         this.GetComponent<SpriteRenderer>().sprite = m_Sprite;
         this.transform.localScale = new Vector3(1, 1, 1);

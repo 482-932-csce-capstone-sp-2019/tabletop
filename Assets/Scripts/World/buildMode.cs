@@ -3,24 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Drawing selection tool : https://hyunkell.com/blog/rts-style-unit-selection-in-unity-5/
-
 public class buildMode : MonoBehaviour
 {
     bool isSelecting = false;
     Vector3 mousePosition1;
-    static Texture2D _selectionTexture;
-    public GameObject worldGO;
-    private World world;
-
-    void Start()
-    {
-        world = (World) worldGO.GetComponent(typeof(World));
-    }
 
     void Update()
     {
-        if (world.buildMode)
+        if (World.instance.buildMode)
         {
             // If we press the left mouse button, save mouse location and begin selection
             if( Input.GetMouseButtonDown( 0 ) && !EventSystem.current.IsPointerOverGameObject())
@@ -32,8 +22,19 @@ public class buildMode : MonoBehaviour
             // If we let go of the left mouse button, end selection
             if( Input.GetMouseButtonUp( 0 ) )
             {
-                world.buildSelection();
-                world.deleteAllTileHighlights();
+                if(World.instance.buildMenu.activeSelf)
+                    World.instance.buildSelection("tile");
+
+                else if(World.instance.terrainMenu.activeSelf)
+                {
+                    //World.instance.buildSelection("terrain");
+                    World.instance.removeTerrainTransparency();
+                }
+
+                else if(World.instance.deleteMode)
+                    World.instance.deleteSelection();
+
+                World.instance.deleteAllTileHighlights();
 
                 isSelecting = false;
                 (Camera.main.GetComponent("CameraHandler") as MonoBehaviour).enabled = true;
@@ -50,53 +51,36 @@ public class buildMode : MonoBehaviour
                         for (int j = 0; j < tiles.GetLength(1); j++)
                         {
                             Vector2 tilePosition = new Vector2(tiles[i,j].x, tiles[i,j].y);
-                            if( IsWithinSelectionBounds( tiles[i,j] ) && world.tileHighlightMap.ContainsKey(tilePosition) == false)
+                            if( IsWithinSelectionBounds( tiles[i,j] ) && World.instance.tileHighlightMap.ContainsKey(tilePosition) == false)
                             {
-                                world.createTileHighlightAt((int)tilePosition.x, (int)tilePosition.y);
+                                if(World.instance.terrainMenu.activeSelf)
+                                {
+                                    World.instance.createTileHighlightAt((int)tilePosition.x, (int)tilePosition.y, true);
+                                    //World.instance.buildSelection("terrain");
+                                }
+                                else
+                                {
+                                    World.instance.createTileHighlightAt((int)tilePosition.x, (int)tilePosition.y);
+                                }
+
                             }
-                            else if(!IsWithinSelectionBounds( tiles[i,j] ) && world.tileHighlightMap.ContainsKey(tilePosition))
+                            else if(!IsWithinSelectionBounds( tiles[i,j] ) && World.instance.tileHighlightMap.ContainsKey(tilePosition))
                             {
-                                world.deleteTileHighlightAt((int)tilePosition.x, (int)tilePosition.y);
+                                if(World.instance.terrainMenu.activeSelf)
+                                {
+                                    World.instance.deleteTileHighlightAt((int)tilePosition.x, (int)tilePosition.y, true);
+                                    //World.instance.buildSelection("terrain");
+                                }
+                                else
+                                {
+                                    World.instance.deleteTileHighlightAt((int)tilePosition.x, (int)tilePosition.y);
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
-
-    public static Texture2D selectionTexture
-    {
-        get
-        {
-            if( _selectionTexture == null )
-            {
-                _selectionTexture = new Texture2D( 1, 1 );
-                _selectionTexture.SetPixel( 0, 0, Color.cyan );
-                _selectionTexture.Apply();
-            }
- 
-            return _selectionTexture;
-        }
-    }
- 
-    public static void DrawScreenRect( Rect rect, Color color )
-    {
-        GUI.color = color;
-        GUI.DrawTexture( rect, selectionTexture );
-        GUI.color = Color.cyan;
-    }
-
-    public static void DrawScreenRectBorder( Rect rect, float thickness, Color color )
-    {
-        // Top
-        DrawScreenRect( new Rect( rect.xMin, rect.yMin, rect.width, thickness ), color );
-        // Left
-        DrawScreenRect( new Rect( rect.xMin, rect.yMin, thickness, rect.height ), color );
-        // Right
-        DrawScreenRect( new Rect( rect.xMax - thickness, rect.yMin, thickness, rect.height ), color);
-        // Bottom
-        DrawScreenRect( new Rect( rect.xMin, rect.yMax - thickness, rect.width, thickness ), color );
     }
 
     public static Rect GetScreenRect( Vector3 screenPosition1, Vector3 screenPosition2 )
@@ -117,8 +101,6 @@ public class buildMode : MonoBehaviour
         {
             // Create a rect from both mouse positions
             var rect = GetScreenRect( mousePosition1, Input.mousePosition );
-            DrawScreenRect( rect, new Color( 0.8f, 0.8f, 0.95f, 0.25f ) );
-            DrawScreenRectBorder( rect, 2, new Color( 0.8f, 0.8f, 0.95f ) );
         }
     }
 
@@ -149,7 +131,19 @@ public class buildMode : MonoBehaviour
         Vector3 bottomRight = new Vector3(tile.x + 1.0f, tile.y, 0.0f);
         Vector3 topLeft = new Vector3(tile.x, tile.y + 1.0f, 0.0f);
         Vector3 topRight = new Vector3(tile.x + 1.0f, tile.y + 1.0f, 0.0f);
-        return bounds.Contains(camera.WorldToViewportPoint(center)) || bounds.Contains(camera.WorldToViewportPoint(bottomLeft)) || bounds.Contains(camera.WorldToViewportPoint(bottomRight)) || bounds.Contains(camera.WorldToViewportPoint(topLeft)) || bounds.Contains(camera.WorldToViewportPoint(topRight));
-    }
 
+        //return bounds.Contains(camera.WorldToViewportPoint(center)) || bounds.Contains(camera.WorldToViewportPoint(bottomLeft)) || bounds.Contains(camera.WorldToViewportPoint(bottomRight)) || bounds.Contains(camera.WorldToViewportPoint(topLeft)) || bounds.Contains(camera.WorldToViewportPoint(topRight));
+
+        Sprite s = World.instance.getChunkAt(tile.x, tile.y).getTileSprite(tile);
+        var v1 = Camera.main.WorldToViewportPoint( bottomLeft );
+        var v2 = Camera.main.WorldToViewportPoint( topRight );
+        var min = Vector3.Min( v1, v2 );
+        var max = Vector3.Max( v1, v2 );
+        min.z = camera.nearClipPlane;
+        max.z = camera.farClipPlane;
+        var spriteBounds = new Bounds();
+        spriteBounds.SetMinMax(min,max);
+
+        return bounds.Intersects(spriteBounds);
+    }
 }

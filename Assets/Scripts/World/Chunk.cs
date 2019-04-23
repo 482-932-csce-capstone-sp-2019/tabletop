@@ -54,9 +54,17 @@ public class Chunk : MonoBehaviour
         {
             for (int j = 0; j < size; j++)
             {
-                tiles[i,j].setTileType(chunk[i,j].type);
+                tiles[i,j].setTileType(chunk[i,j].type, true);
             }
         }
         Debug.Log("Tiles set");
+    }
+
+    public Sprite getTileSprite(Tile tile)
+    {
+        if(tileGOMap.ContainsKey(tile))
+            return tileGOMap[tile].GetComponent<SpriteRenderer>().sprite;
+        
+        return null;
     }
 }
