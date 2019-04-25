@@ -40,7 +40,7 @@ public class fileIO : MonoBehaviour
     List<string> images;
 
     List<GameObject> createdListObjects;
-    string fileType;
+    public string fileType;
 
     
     void Awake()

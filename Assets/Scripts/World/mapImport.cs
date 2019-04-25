@@ -46,6 +46,7 @@ public class mapImport : MonoBehaviour
         grid.SetActive(true);
         UI.SetActive(true);
         instructions.SetActive(false);
+        World.instance.setUIInteract(true);
 
         (Camera.main.GetComponent("CameraHandler") as MonoBehaviour).enabled = true;
         (this.GetComponent("resizeTool") as MonoBehaviour).enabled = false;

@@ -1042,12 +1042,13 @@ public class World : MonoBehaviour
 
     public void closeLoadMenu()
     {
+        if(fileIO.instance.fileType == "saves")
+            (Camera.main.GetComponent("CameraHandler") as MonoBehaviour).enabled = true;
+            
         fileIO.instance.clearGameObjects();
         fileMenu.SetActive(false);
         setUIInteract(true);
-        (Camera.main.GetComponent("CameraHandler") as MonoBehaviour).enabled = true;
     }
-
 
     public void openSaveMenu()
     {

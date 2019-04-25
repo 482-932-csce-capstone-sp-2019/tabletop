@@ -121,6 +121,7 @@ public class resizeTool : MonoBehaviour
     {
         isSelecting = false;
         confirmation.SetActive(false);
+        World.instance.setUIInteract(true);
         scaleImage();
     }
 
