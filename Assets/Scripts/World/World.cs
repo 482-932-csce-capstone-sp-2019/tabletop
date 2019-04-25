@@ -175,7 +175,7 @@ public class World : MonoBehaviour
             float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
             Tile t = getTileAt(mouseX, mouseY);
 
-            if(t != null && !buildMode && !EventSystem.current.IsPointerOverGameObject())
+            if(t != null && !buildMode && !EventSystem.current.IsPointerOverGameObject() && !IsPointerOverUIObject())
             {
                 // Select unit
                 if(t.unit && selectedUnit == null)
@@ -199,7 +199,7 @@ public class World : MonoBehaviour
                 }
 
             }
-            else if (t != null && buildMode && !EventSystem.current.IsPointerOverGameObject())
+            else if (t != null && buildMode && !EventSystem.current.IsPointerOverGameObject() && !IsPointerOverUIObject())
             {
                 //t.setTileType(selectedTileType);
             }
@@ -211,7 +211,14 @@ public class World : MonoBehaviour
         }
     }
 
-
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
     private void LateUpdate()
     {
         //startTime = 0f;

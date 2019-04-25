@@ -5,6 +5,7 @@ Script found here: https://kylewbanks.com/blog/unity3d-panning-and-pinch-to-zoom
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
 
@@ -33,9 +34,9 @@ public class CameraHandler : MonoBehaviour {
     }
     
     void Update() {
-        if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer) {
+        if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer && !EventSystem.current.IsPointerOverGameObject() && !IsPointerOverUIObject()) {
             HandleTouch();
-        } else {
+        } else if(!EventSystem.current.IsPointerOverGameObject() && !IsPointerOverUIObject()) {
             // Comment this line out to only work with touch gestures
             HandleMouse();
         }
@@ -55,7 +56,7 @@ public class CameraHandler : MonoBehaviour {
             // If the touch began, capture its position and its finger ID.
             // Otherwise, if the finger ID of the touch doesn't match, skip it.
             Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began) {
+            if (touch.phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject()) {
                 lastPanPosition = touch.position;
                 panFingerId = touch.fingerId;
             } else if (touch.fingerId == panFingerId && touch.phase == TouchPhase.Moved) {
@@ -155,6 +156,14 @@ public class CameraHandler : MonoBehaviour {
 
     }
 
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
     void PanCamera(Vector3 newPanPosition) {
         // Determine how much to move the camera
         Vector3 offset = cam.ScreenToViewportPoint(lastPanPosition - newPanPosition);
