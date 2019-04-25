@@ -84,6 +84,17 @@ public class World : MonoBehaviour
     public GameObject fileMenu;
     public GameObject saveMenu;
 
+    //---------touch section-------------------
+    public List<float> sizes;
+    public List<int> ids;
+    public List<Tile> positions;
+    public bool artifactPlayerSelected = false;
+    public float artifactID = -1;
+    public int index = 0;
+    public bool setArtifact = false;
+    //public GameObject showUnit;
+    public bool isClicked = false;
+    //-----------------------------------------
 
     Vector3 velocity;
     Vector3 autoAdjustOffset = new Vector3(0,0,-10f);
@@ -164,9 +175,84 @@ public class World : MonoBehaviour
         }
         DeleteChunks();
 
-        // handle mouse clicks
-        if(Input.GetMouseButtonDown(0))
+
+        if (Input.touchCount > 0)
         {
+            isClicked = true;
+            //float posX = 0;
+            //float posY = 0;
+
+            Touch touch = Input.GetTouch(0);
+            //posX = touch.position.x;
+            //posY = touch.position.y; 
+
+            float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+            float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+            Tile t = getTileAt(mouseX, mouseY);
+
+            if(t != null && !buildMode && !EventSystem.current.IsPointerOverGameObject() && artifactPlayerSelected == false && setArtifact == true)
+            {
+                // Select unit
+                if(t.unit && selectedUnit == null)
+                {
+                    Debug.Log("unit selected");
+                    foreach(GameObject player in players)
+                    {
+                        if (player.GetComponent<unit>().tileX == t.x && player.GetComponent<unit>().tileY == t.y)
+                        {
+                            artifactPlayerSelected = true;
+                            saveTouch(touch);
+                            selectedUnit = player;
+                            selectedUnit.GetComponent<unit>().selected = Color.red;
+                        }
+                    }
+                }
+            }
+
+
+            if(positions != null && setArtifact == true)
+            {
+                for(int n = 0; n < positions.Count; n++)
+                {
+                    if(t == positions[n])
+                    {
+                        index = n;
+                        //artifactID = ids[n];
+                    }
+                }
+            }
+
+            if(t != null && !buildMode && !EventSystem.current.IsPointerOverGameObject() && artifactPlayerSelected == true && setArtifact == false)
+            {
+                // Select unit
+                if(t.unit && selectedUnit == null)
+                {
+                    Debug.Log("unit selected");
+                    foreach(GameObject player in players)
+                    {
+                        if (player.GetComponent<unit>().tileX == t.x && player.GetComponent<unit>().tileY == t.y && t.y == positions[index].y && t.x == positions[index].x)
+                        {
+                            selectedUnit = player;
+                            selectedUnit.GetComponent<unit>().selected = Color.red;
+                        }
+                    }
+                }
+
+                // Move unit
+                if(!t.unit && selectedUnit != null)
+                {
+                    Tile start = getTileAt(selectedUnit.transform.position.x, selectedUnit.transform.position.y);
+                    moveUnit(start, t);
+                    positions[index] = t;
+                }
+
+            }
+        }
+
+        // handle mouse clicks
+        if(Input.GetMouseButtonDown(0) && artifactPlayerSelected == false && setArtifact == false)
+        {
+            isClicked = true;
             // Disable camera movement script
             //(Camera.main.GetComponent("CameraHandler") as MonoBehaviour).enabled = false;
 
@@ -219,6 +305,26 @@ public class World : MonoBehaviour
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
         return results.Count > 0;
     }
+    public void OnGUI()
+     {
+        
+            float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+
+             if (isClicked == true)
+             {
+                //GUI.Label(new Rect(5,5,400,100), mouseX.ToString());
+             }
+
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            //GUI.Label(new Rect(5,5,400,100), setArtifact.ToString()); //for debuging
+        }
+
+
+     }
+
+
     private void LateUpdate()
     {
         //startTime = 0f;
@@ -793,6 +899,9 @@ public class World : MonoBehaviour
 			selectedUnit.GetComponent<unit>().selected = Color.white;
 		}
         selectedUnit = null;
+
+        artifactPlayerSelected = false; //to allow mouse input
+        artifactID = -1; //allows for new selection of artifacts
 	}
 
     // moves the selected unit from its initial Tile to a new Tile
@@ -1115,5 +1224,53 @@ public class World : MonoBehaviour
         fs.Close();
         Debug.Log("Saved map and player locations");
     }
+
+    //------touch functions--------
+    public float getSize(Touch a) //get Size of a single touch
+    {
+        return ((a.radius + a.radiusVariance) * 2);
+    }
+
+    public int getID(Touch a) //get Touch ID
+    {
+        return a.fingerId;
+    }
+
+    public Vector2 getPosition(Touch a)
+    {
+        return a.position;
+    }
+
+    public void saveTouch(Touch a) //save current Touch
+    {
+        sizes.Add(getSize(a));
+        if(ids == null)
+        {
+            ids.Add(0);
+        }
+        else
+        {
+            ids.Add(ids.Count);
+        }
+        float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+        float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+        Tile t = getTileAt(mouseX, mouseY);
+        positions.Add(t);
+
+    }
+
+    public void toggleArtifact()
+    {
+        if(!setArtifact)
+        {
+            setArtifact = true;
+        }
+        else
+        {
+            setArtifact = false;
+        }
+    }
+
+    //-----------------------------
 
 }
