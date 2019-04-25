@@ -20,6 +20,10 @@ public class buildTerrainMenu : MonoBehaviour
 
         // Create the option list
         List<Dropdown.OptionData> items = new List<Dropdown.OptionData>();
+
+        List<Dropdown.OptionData> smallOptions = new List<Dropdown.OptionData>();
+        List<Dropdown.OptionData> mediumOptions = new List<Dropdown.OptionData>();
+        List<Dropdown.OptionData> largeOptions = new List<Dropdown.OptionData>();
         
         Sprite [] sprites = Resources.LoadAll<Sprite>("Terrain");
 
@@ -32,7 +36,14 @@ public class buildTerrainMenu : MonoBehaviour
             
             // Add the option to the list
             var spriteOption = new Dropdown.OptionData(spriteName, sprite);
-            items.Add(spriteOption);
+            var width = sprite.rect.width;
+            if (width == 16) {
+                smallOptions.Add(spriteOption);
+            } else if (width == 32) {
+                mediumOptions.Add(spriteOption);
+            } else if (width == 48) {
+                largeOptions.Add(spriteOption);
+            }
         }
 
         sprites = Resources.LoadAll<Sprite>("dungeon 1");
@@ -46,11 +57,21 @@ public class buildTerrainMenu : MonoBehaviour
             
             // Add the option to the list
             var spriteOption = new Dropdown.OptionData(spriteName, sprite);
-            items.Add(spriteOption);
+            var width = sprite.rect.width;
+            if (width == 16) {
+                smallOptions.Add(spriteOption);
+            } else if (width == 32) {
+                mediumOptions.Add(spriteOption);
+            } else if (width == 48) {
+                largeOptions.Add(spriteOption);
+            }        
         }
 
         // Add the options to the drop down box
-        m_dropdown.AddOptions(items);
+        m_dropdown.AddOptions(smallOptions);
+        m_dropdown.AddOptions(mediumOptions);
+        m_dropdown.AddOptions(largeOptions);
+
 
         //Add listener for when the value of the Dropdown changes, to take action
         m_dropdown.onValueChanged.AddListener(delegate
