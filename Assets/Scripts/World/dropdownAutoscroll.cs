@@ -23,7 +23,6 @@ public class dropdownAutoscroll : MonoBehaviour {
             if (Input.GetButtonUp("Vertical"))
             {
                 Transform dropdownListTransform = dropdown.gameObject.transform.Find("Dropdown List");
-                //Debug.Log(dropdown.gameObject.transform.childCount);
                 if (dropdownListTransform == null)
                 {
                     // Show the dropdown when the user hits the arrow keys if the dropdown is not already showing

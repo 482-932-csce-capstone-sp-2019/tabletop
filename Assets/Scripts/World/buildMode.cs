@@ -56,7 +56,6 @@ public class buildMode : MonoBehaviour
                                 if(World.instance.terrainMenu.activeSelf)
                                 {
                                     World.instance.createTileHighlightAt((int)tilePosition.x, (int)tilePosition.y, true);
-                                    //World.instance.buildSelection("terrain");
                                 }
                                 else
                                 {
@@ -69,7 +68,6 @@ public class buildMode : MonoBehaviour
                                 if(World.instance.terrainMenu.activeSelf)
                                 {
                                     World.instance.deleteTileHighlightAt((int)tilePosition.x, (int)tilePosition.y, true);
-                                    //World.instance.buildSelection("terrain");
                                 }
                                 else
                                 {
@@ -131,8 +129,6 @@ public class buildMode : MonoBehaviour
         Vector3 bottomRight = new Vector3(tile.x + 1.0f, tile.y, 0.0f);
         Vector3 topLeft = new Vector3(tile.x, tile.y + 1.0f, 0.0f);
         Vector3 topRight = new Vector3(tile.x + 1.0f, tile.y + 1.0f, 0.0f);
-
-        //return bounds.Contains(camera.WorldToViewportPoint(center)) || bounds.Contains(camera.WorldToViewportPoint(bottomLeft)) || bounds.Contains(camera.WorldToViewportPoint(bottomRight)) || bounds.Contains(camera.WorldToViewportPoint(topLeft)) || bounds.Contains(camera.WorldToViewportPoint(topRight));
 
         Sprite s = World.instance.getChunkAt(tile.x, tile.y).getTileSprite(tile);
         var v1 = Camera.main.WorldToViewportPoint( bottomLeft );

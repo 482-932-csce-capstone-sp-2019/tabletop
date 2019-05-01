@@ -45,97 +45,10 @@ public class SpriteManager : MonoBehaviour
                 modifier += "W";
             }
 
-            // if(neighbors[4] != null && neighbors[4].type == tile.type)
-            // {
-            //     modifier += "NE";
-            // }
-            // if(neighbors[5] != null && neighbors[5].type == tile.type)
-            // {
-            //     modifier += "NW";
-            // }
-            // if(neighbors[6] != null && neighbors[6].type == tile.type)
-            // {
-            //     modifier += "SE";
-            // }
-            // if(neighbors[7] != null && neighbors[7].type == tile.type)
-            // {
-            //     modifier += "SW";
-            // }
-
             name += modifier;
 
             if(tileSprites.ContainsKey(name))
                 return tileSprites[name];
-
-            // else
-            // {
-            //     //Debug.Log("No sprite named: " + name);
-            //     bool checkSpecialCases = true;
-            //     if(checkSpecialCases)
-            //     {
-            //         // Top Case:
-            //         if(modifier == "ESWNENWSESW" || modifier == "ESWNESESW" || modifier == "ESWNWSESW")
-            //             modifier = "ESWSESW";
-
-            //         // Right Side Case:
-            //         else if(modifier == "NSWNENWSESW" || modifier == "NSWNWSESW" || modifier == "NSWNENWSW")
-            //             modifier = "NSWNWSW";
-
-            //         // Bottom Case:
-            //         else if(modifier == "NEWNENWSESW" || modifier == "NEWNENWSE" || modifier == "NEWNENWSW")
-            //             modifier = "NEWNENW";
-
-            //         // Left Side Case:
-            //         else if(modifier == "NESNENWSESW" || modifier == "NESNENWSE" || modifier == "NESNESESW")
-            //             modifier = "NESNESE";
-
-            //         // Bottom right corner
-            //         else if(modifier == "NWNWSW" || modifier == "NWNWSE" || modifier == "NWNWSESW" || modifier == "NWNENW" || modifier == "NWNENWSW" || modifier == "NWNENWSE" || modifier == "NWNENWSESW")
-            //             modifier = "NWNW";
-
-            //         // Bottom left corner
-            //         else if(modifier == "NENESW" || modifier == "NENESE" || modifier == "NENESESW" || modifier == "NENENW" || modifier == "NENENWSW" || modifier == "NENENWSE" || modifier == "NENENWSESW")
-            //             modifier = "NENE";
-
-            //         // Top right corner
-            //         else if(modifier == "SWSESW" || modifier == "SWNWSW" || modifier == "SWNWSESW" || modifier == "SWNESW" || modifier == "SWNESESW" || modifier == "SWNENWSW" || modifier == "SWNENWSESW")
-            //             modifier = "SWSW";
-                    
-            //         // Top left corner
-            //         else if(modifier == "ESSESW" || modifier == "ESNWSE" || modifier == "ESNWSESW" || modifier == "ESNESE" || modifier == "ESNESESW" || modifier == "ESNENWSE" || modifier == "ESNENWSESW")
-            //             modifier = "ESSE";
-
-            //         name = tile.type.ToString();
-            //         name += modifier;
-            //         if(tileSprites.ContainsKey(name))
-            //             return tileSprites[name];
-            //     }
-
-            //     Debug.Log("No special case named: " + name);
-            //     name = tile.type.ToString();
-            //     modifier = "";
-            //     neighbors = tile.getNeighbors();
-            //     if(neighbors[0] != null && neighbors[0].type == tile.type)
-            //     {
-            //         modifier += "N";
-            //     }
-            //     if(neighbors[1] != null && neighbors[1].type == tile.type)
-            //     {
-            //         modifier += "E";
-            //     }
-            //     if(neighbors[2] != null && neighbors[2].type == tile.type)
-            //     {
-            //         modifier += "S";
-            //     }
-            //     if(neighbors[3] != null && neighbors[3].type == tile.type)
-            //     {
-            //         modifier += "W";
-            //     }
-
-            //     name += modifier;
-            //     if(tileSprites.ContainsKey(name))
-            //         return tileSprites[name];
-            // }
 
             Debug.LogError("Unrecognized tile type: " + name);
             return null;
@@ -162,7 +75,6 @@ public class SpriteManager : MonoBehaviour
         {
             return objectSprites[name];
         }
-        //Debug.LogError("Unrecognized sprite request: " + name);
         return null;
     }
 

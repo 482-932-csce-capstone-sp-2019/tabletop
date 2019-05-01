@@ -9,25 +9,6 @@ using UnityEngine.UI;
 
 public class fileIO : MonoBehaviour
 {
-    // // load a map from a binary file
-    // public static string load()
-    // {
-    //     string path = EditorUtility.OpenFilePanel("Load map", "saves", "dat");
-    //     return path;
-    // }
-
-    // // save a map as a binary file
-    // public static string save()
-    // {
-    //     string path = EditorUtility.SaveFilePanel("Save map", "saves", "map", "dat");
-    //     return path;
-    // }
-
-    // public static string loadImage()
-    // {
-    //     string absolutePath = EditorUtility.OpenFilePanel("Import map image", "map images", "*");
-    //     return absolutePath;
-    // }
     public static fileIO instance;
     public GameObject item;
     public GameObject contentGO_load;

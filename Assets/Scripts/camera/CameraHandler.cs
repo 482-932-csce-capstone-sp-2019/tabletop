@@ -115,29 +115,8 @@ public class CameraHandler : MonoBehaviour {
         ZoomCamera(scroll, ZoomSpeedMouse);
     }
 
-    void returnCamera(Vector3 returnPos) {
-
-        //Vector3 offset = returnToPos - returnPos;
-        //Vector3 move = new Vector3(offset.x * PanSpeed, offset.y * PanSpeed, 0);
-
-        //transform.Translate(move, Space.World);
-        //Vector3 pos = transform.position;
-        //pos.x = Mathf.Clamp(transform.position.x, BoundsX[0], BoundsX[1]);
-        //pos.y = Mathf.Clamp(transform.position.y, BoundsY[0], BoundsY[1]);
-        //transform.position = pos;
-        //returnToPos = returnPos;
-        // Determine how much to move the camera
-        //Vector3 offset = cam.ScreenToViewportPoint(transform.position - returnToPos);
-        //Vector3 move = new Vector3(offset.x * PanSpeed, offset.y * PanSpeed, 0);
-
-        // Perform the movement
-        //transform.Translate(move);
-
-        // Ensure the camera remains within bounds.
-        //Vector3 pos = transform.position;
-        //pos.x = Mathf.Clamp(transform.position.x, BoundsX[0], BoundsX[1]);
-        //pos.y = Mathf.Clamp(transform.position.y, BoundsY[0], BoundsY[1]);
-
+    void returnCamera(Vector3 returnPos)
+    {
         float t = 0.0f;
         while (t < 1.0f)
         {
@@ -145,15 +124,6 @@ public class CameraHandler : MonoBehaviour {
         }
       
         transform.position = Vector3.Lerp(returnPos, returnToPos, t);
-       
-
-        //transform.position = returnToPos;
-        //Vector3 offset = cam.ScreenToViewportPoint(returnToPos - returnPos);
-        //Vector3 move = new Vector3(offset.x * PanSpeed, offset.y * PanSpeed, 0);
-
-        // Perform the movement
-        //transform.Translate(move, Space.World);
-
     }
 
     private bool IsPointerOverUIObject()

@@ -84,18 +84,6 @@ public class World : MonoBehaviour
     public GameObject fileMenu;
     public GameObject saveMenu;
 
-    //---------touch section-------------------
-    // public List<float> sizes;
-    // public List<int> ids;
-    // public List<Tile> positions;
-    // public bool artifactPlayerSelected = false;
-    // public float artifactID = -1;
-    // public int index = 0;
-    // public bool setArtifact = false;
-    // //public GameObject showUnit;
-    // public bool isClicked = false;
-    //-----------------------------------------
-
     Vector3 velocity;
     Vector3 autoAdjustOffset = new Vector3(0,0,-10f);
     float smoothTime = 0.5f;
@@ -176,12 +164,8 @@ public class World : MonoBehaviour
         DeleteChunks();
 
         // handle mouse clicks
-        if(Input.GetMouseButtonDown(0))// && artifactPlayerSelected == false && setArtifact == false)
+        if(Input.GetMouseButtonDown(0))
         {
-            //isClicked = true;
-            // Disable camera movement script
-            //(Camera.main.GetComponent("CameraHandler") as MonoBehaviour).enabled = false;
-
             // get mouse position and tile at that position
             float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
             float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
@@ -211,15 +195,6 @@ public class World : MonoBehaviour
                 }
 
             }
-            else if (t != null && buildMode && !EventSystem.current.IsPointerOverGameObject() && !IsPointerOverUIObject())
-            {
-                //t.setTileType(selectedTileType);
-            }
-        }
-        if(Input.GetMouseButtonUp(0))
-        {
-            // Re-enable camera movement script
-            //(Camera.main.GetComponent("CameraHandler") as MonoBehaviour).enabled = true;
         }
     }
 
@@ -231,51 +206,14 @@ public class World : MonoBehaviour
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
         return results.Count > 0;
     }
-    // public void OnGUI()
-    //  {
-        
-    //         float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-
-    //          if (isClicked == true)
-    //          {
-    //             //GUI.Label(new Rect(5,5,400,100), mouseX.ToString());
-    //          }
-
-    //     if (Input.touchCount > 0)
-    //     {
-    //         Touch touch = Input.GetTouch(0);
-    //         //GUI.Label(new Rect(5,5,400,100), setArtifact.ToString()); //for debuging
-    //     }
-
-
-    //  }
-
 
     private void LateUpdate()
     {
-        //startTime = 0f;
-        //endTime = 0f;
-        
-       /* if (Input.GetMouseButtonDown(0) && startTime == 0) {
-            //numClicks = 0;
-            numClicks++;
-            startTime = Time.time;
-        }
-        if (numClicks == 1 && Time.time - startTime < 0.5f && Input.GetMouseButtonDown(0)) {
-            numClicks++;
-        }
-        if (Time.time - startTime >= 0.5f || numClicks >=2){
-            numClicks = 0;
-            startTime = 0;
-        }*/
         if (Input.GetMouseButtonDown(2)) {
             Debug.Log("adjusting camera");
             Vector3 centerPoint = getCenterPoint() + autoAdjustOffset;
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, centerPoint, 1f);
         }
-        
-       
-
     }
 
     Vector3 getCenterPoint() {
@@ -306,46 +244,6 @@ public class World : MonoBehaviour
     {
         x = Mathf.FloorToInt(x / (float)Chunk.size) * Chunk.size;
         y = Mathf.FloorToInt(y / (float)Chunk.size) * Chunk.size;
-
-        /*
-
-        If doesn't exist in active or total map - instantiate and add to both
-
-        If exists in active but not total - shouldn't be possible
-
-        If exists in total but not active - load chunk
-
-        If exists in both - do nothing?
-
-         */
-
-        // // Create new chunk
-        // if(activeMap.ContainsKey(new Vector2(x,y)) == false && chunkMap.ContainsKey(new Vector2(x,y)) == false)
-        // {
-        //     GameObject chunk = (GameObject)Instantiate(chunkGO, new Vector3(x, y, 0f), Quaternion.identity);
-        //     chunkMap.Add(new Vector2(x,y), chunk.GetComponent<Chunk>());
-        //     activeMap.Add(new Vector2(x,y), chunk.GetComponent<Chunk>());
-        // }
-
-        // // Load chunk
-        // else if(activeMap.ContainsKey(new Vector2(x,y)) == false && chunkMap.ContainsKey(new Vector2(x,y)) == true)
-        // {
-        //     Debug.Log("Loading chunk");
-        //     GameObject chunk = (GameObject)Instantiate(chunkGO, new Vector3(x, y, 0f), Quaternion.identity);
-        //     Chunk c = chunk.GetComponent<Chunk>();
-
-        //     if(chunkMap[new Vector2(x,y)] != null)
-        //     {
-        //         c = chunkMap[new Vector2(x,y)];
-        //         c.tiles[0,0].setTileType(Tile.Type.empty);
-        //         activeMap.Add(new Vector2(x,y), c.GetComponent<Chunk>());
-        //     }
-        //     else
-        //     {
-        //         activeMap.Add(new Vector2(x,y), chunk.GetComponent<Chunk>());
-        //     }
-        //     Debug.Log("Done loading?");
-        // }
 
         if(activeMap.ContainsKey(new Vector2(x,y)) == false)
         {
@@ -406,17 +304,6 @@ public class World : MonoBehaviour
             terrain.transform.position = new Vector3(tilePosition.x, tilePosition.y, -0.1f);
             SpriteRenderer renderer = terrain.AddComponent<SpriteRenderer>();
 
-            // Sprite resizing
-            // if (selectedTerrain.rect.width == selectedTerrain.rect.height)
-            // {
-            //     float scale = selectedTerrain.rect.width/16;
-            //     terrain.transform.localScale = new Vector3(terrain.transform.localScale.x / scale, terrain.transform.localScale.y / scale, 1.0f);
-            // }
-            // else
-            // {
-            //     Debug.Log("Sprite size mismatch");
-            // }
-
             renderer.color = new Vector4(renderer.color.r, renderer.color.g, renderer.color.b, 0.2f);
 
             renderer.sprite = selectedTerrain;
@@ -440,17 +327,6 @@ public class World : MonoBehaviour
                 terrain.name = "placeholder";
             terrain.transform.position = new Vector3(tilePosition.x, tilePosition.y, -0.1f);
             SpriteRenderer renderer = terrain.AddComponent<SpriteRenderer>();
-
-            // Sprite resizing
-            // if (selectedTerrain.rect.width == selectedTerrain.rect.height)
-            // {
-            //     float scale = selectedTerrain.rect.width/16;
-            //     terrain.transform.localScale = new Vector3(terrain.transform.localScale.x / scale, terrain.transform.localScale.y / scale, 1.0f);
-            // }
-            // else
-            // {
-            //     Debug.Log("Sprite size mismatch");
-            // }
 
             renderer.color = new Vector4(renderer.color.r, renderer.color.g, renderer.color.b, 0.2f);
 
@@ -825,9 +701,6 @@ public class World : MonoBehaviour
 			selectedUnit.GetComponent<unit>().selected = Color.white;
 		}
         selectedUnit = null;
-
-        //artifactPlayerSelected = false; //to allow mouse input
-        //artifactID = -1; //allows for new selection of artifacts
 	}
 
     // moves the selected unit from its initial Tile to a new Tile
@@ -1151,53 +1024,4 @@ public class World : MonoBehaviour
         fs.Close();
         Debug.Log("Saved map and player locations");
     }
-
-    //------touch functions--------
-    // public float getSize(Touch a) //get Size of a single touch
-    // {
-    //     return ((a.radius + a.radiusVariance) * 2);
-    // }
-
-    // public int getID(Touch a) //get Touch ID
-    // {
-    //     return a.fingerId;
-    // }
-
-    // public Vector2 getPosition(Touch a)
-    // {
-    //     return a.position;
-    // }
-
-    // public void saveTouch(Touch a) //save current Touch
-    // {
-    //     sizes.Add(getSize(a));
-    //     if(ids == null)
-    //     {
-    //         ids.Add(0);
-    //     }
-    //     else
-    //     {
-    //         ids.Add(ids.Count);
-    //     }
-    //     float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-    //     float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
-    //     Tile t = getTileAt(mouseX, mouseY);
-    //     positions.Add(t);
-
-    // }
-
-    // public void toggleArtifact()
-    // {
-    //     if(!setArtifact)
-    //     {
-    //         setArtifact = true;
-    //     }
-    //     else
-    //     {
-    //         setArtifact = false;
-    //     }
-    // }
-
-    //-----------------------------
-
 }

@@ -30,8 +30,6 @@ public class buildTerrainMenu : MonoBehaviour
         // Loop through each sprite
         foreach (var sprite in sprites)
         {
-            // Try and find the '.' in the sprite's name. This is used as a delimiter
-            // between the country code and the name of the language
             string spriteName = sprite.name;
             
             // Add the option to the list
@@ -51,8 +49,6 @@ public class buildTerrainMenu : MonoBehaviour
         // Loop through each sprite
         foreach (var sprite in sprites)
         {
-            // Try and find the '.' in the sprite's name. This is used as a delimiter
-            // between the country code and the name of the language
             string spriteName = sprite.name;
             
             // Add the option to the list
